@@ -22,7 +22,6 @@
     "magento/module-theme": "*",
     "magento/framework": "*",
     "aait/php-name-parser": "~1.0.0",
-    "payiq/php-api": "~1.0.1",
     "payiq/payiq-php": "*"
   },
   "autoload": {
