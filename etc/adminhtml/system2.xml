@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="payiq" translate="label" sortOrder="110">
+            <label>PayIQ</label>
+        </tab>
+
+        <section id="payment">
+            <group id="payiq_payments" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>PayIQ Payment Methods</label>
+                <comment><![CDATA[PayIQ Payment Methods]]></comment>
+                <attribute type="expanded">1</attribute>
+                <fieldset_css>complex</fieldset_css>
+                <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Group</frontend_model>
+                <include path="PayIQ::system/payiq.xml"/>
+            </group>
+        </section>
+
+        <section id="tax" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="cart_display">
+                <field id="payiq_fee" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display PayIQ fee</label>
+                    <source_model>Magento\Tax\Model\System\Config\Source\Tax\Display\Type</source_model>
+                    <backend_model>Magento\Tax\Model\Config\Notification</backend_model>
+                </field>
+            </group>
+            <group id="sales_display">
+                <field id="payiq_fee" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display PayIQ fee</label>
+                    <source_model>Magento\Tax\Model\System\Config\Source\Tax\Display\Type</source_model>
+                    <backend_model>Magento\Tax\Model\Config\Notification</backend_model>
+                </field>
+            </group>
+        </section>
+
+        <section id="payiq" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Social Security Number</label>
+            <tab>payiq</tab>
+            <resource>PayIQ::payiq_settings</resource>
+            <group id="ssn" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>PayIQ Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payiq/ssn/enable</config_path>
+                    <comment>Activate Social Security Number extension on Checkout page.</comment>
+                </field>
+                <field id="debug" translate="label comment" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payiq/ssn/debug</config_path>
+                </field>
+                <field id="accountnumber" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account Number</label>
+                    <config_path>payiq/ssn/accountnumber</config_path>
+                </field>
+                <field id="encryptionkey" translate="label comment" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Encryption Key</label>
+                    <config_path>payiq/ssn/encryptionkey</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

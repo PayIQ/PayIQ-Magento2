@@ -1,0 +1,36 @@
+{
+  "name": "payiq/magento2-payments",
+  "description": "Official PayIQ Payments Extension for Magento2",
+  "type": "magento2-module",
+  "version": "1.0.3",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "magento/module-config": "*",
+    "magento/module-store": "*",
+    "magento/module-checkout": "*",
+    "magento/module-catalog": "*",
+    "magento/module-sales": "*",
+    "magento/module-customer": "*",
+    "magento/module-payment": "*",
+    "magento/module-quote": "*",
+    "magento/module-backend": "*",
+    "magento/module-directory": "*",
+    "magento/module-theme": "*",
+    "magento/framework": "*",
+    "aait/php-name-parser": "~1.0.0",
+    "payiq/php-api": "~1.0.1",
+    "pelmered/payiq-php": "*"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "PayIQ\\Payments\\": ""
+    }
+  }
+}

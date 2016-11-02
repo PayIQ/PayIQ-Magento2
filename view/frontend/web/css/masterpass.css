@@ -1,0 +1,14 @@
+.masterpass a.payiq-masterpass-button,
+.masterpass a.payiq-masterpass-button:hover,
+.masterpass a.payiq-masterpass-button:visited,
+.masterpass a.payiq-masterpass-button:hover {
+    color: transparent;
+}
+
+.masterpass img {
+    height: auto;
+    max-width: 100%;
+}
+.masterpass img {
+    border: 0;
+}

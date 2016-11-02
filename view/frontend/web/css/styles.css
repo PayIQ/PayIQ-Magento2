@@ -1,0 +1,7 @@
+.checkout-payment-method .payment-method-title label div.payiq-logo.payiq {
+    display: inline-block;
+    background: url(../images/payiq-logo.png) no-repeat;
+    background-size: contain;
+    width: 82px;
+    height: 39px;
+}
