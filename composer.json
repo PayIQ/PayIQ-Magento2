@@ -1,6 +1,6 @@
 {
-  "name": "payiq/magento2-payments",
-  "description": "Official PayIQ Payments Extension for Magento2",
+  "name": "payiq/payiq-magento2",
+  "description": "Official PayIQ module for Magento2",
   "type": "magento2-module",
   "version": "1.0.3",
   "license": [
@@ -23,7 +23,7 @@
     "magento/framework": "*",
     "aait/php-name-parser": "~1.0.0",
     "payiq/php-api": "~1.0.1",
-    "pelmered/payiq-php": "*"
+    "payiq/payiq-php": "*"
   },
   "autoload": {
     "files": [

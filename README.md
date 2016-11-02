@@ -2,10 +2,6 @@
 
 The official PayIQ Extension for Magento2
 
-# Version
-
-At the moment the module is in the process of development.
-
 # Install
 
 
@@ -15,7 +11,7 @@ At the moment the module is in the process of development.
 
 2. Install the module and it's dependencies with this command:
 	```bash    
-	composer require payiq/magento2-payments
+	composer require payiq/payiq-magento2
 	```
 
 3. Enter following commands to enable module:
