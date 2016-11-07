@@ -21,6 +21,11 @@ The official PayIQ Extension for Magento2
     ```
     This will enable the module, run the required install scripts and clear the cache.
 
+    If you run Magneto in production mode, you will also need to recompile:
+    ```bash
+    php bin/magento setup:di:compile
+    ```
+
 4. Login into the Magneto admin to enable and configure the module. You do this under Stores > Configuration > Sales > Payment Methods > PayIQ Payments.
 
 # Changelog
