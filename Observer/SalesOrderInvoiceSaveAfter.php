@@ -1,19 +1,19 @@
 <?php
 
-namespace PayIQ\Payments\Observer;
+namespace PayIQ\Magento2\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 
 class SalesOrderInvoiceSaveAfter implements ObserverInterface
 {
-    /** @var \PayIQ\Payments\Helper\Data */
+    /** @var \PayIQ\Magento2\Helper\Data */
     protected $payiqHelper;
 
     /**
-     * @param \PayIQ\Payments\Helper\Data $payiqHelper
+     * @param \PayIQ\Magento2\Helper\Data $payiqHelper
      */
     public function __construct(
-        \PayIQ\Payments\Helper\Data $payiqHelper
+        \PayIQ\Magento2\Helper\Data $payiqHelper
     ) {
         $this->payiqHelper = $payiqHelper;
     }

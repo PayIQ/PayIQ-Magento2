@@ -6,9 +6,32 @@ use Magento\Framework\DataObject;
 use Magento\Payment\Model\Method\ConfigInterface;
 use Magento\Payment\Model\Method\Online\GatewayInterface;
 use \Magento\Framework\Exception\LocalizedException;
+//use \Magento\Payment\Model\Method\AbstractMethod;
 
-abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMethod implements GatewayInterface
+/**
+ * Class PayIQ
+ * @package PayIQ\Magento2\Model\Method
+ */
+//class PayIQ extends \PayIQ\Magento2\Model\Method\AbstractMethod
+class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements GatewayInterface
+//class PayIQ extends AbstractMethod implements GatewayInterface
 {
+
+    const METHOD_CODE = 'payiq';
+
+    /**
+     * Payment code
+     *
+     * @var string
+     */
+    protected $_code = self::METHOD_CODE;
+
+    /**
+     * @var string
+     */
+    //protected $_formBlockType = 'PayIQ\Magento2\Block\Form\PayIQ';
+    protected $_infoBlockType = 'PayIQ\Magento2\Block\Info\PayIQ';
+
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
@@ -38,6 +61,23 @@ abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMeth
      * @var \PayIQ\Magento2\Logger\Logger
      */
     protected $payiqLogger;
+
+    /**
+     * Payment Method feature
+     *
+     * @var bool
+     */
+    protected $_canAuthorize = true;
+    protected $_canCapture = true;
+    protected $_canCapturePartial = true;
+    protected $_canCaptureOnce = true;
+    protected $_canRefund = true;
+    protected $_canRefundInvoicePartial = true;
+    protected $_isGateway = true;
+    protected $_isInitializeNeeded = true;
+    protected $_canVoid = true;
+    protected $_canUseInternal = false;
+    protected $_canFetchTransactionInfo = true;
 
     /**
      * Constructor
@@ -77,6 +117,7 @@ abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMeth
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
     ) {
+
         parent::__construct(
             $context,
             $registry,
@@ -89,6 +130,32 @@ abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMeth
             $resourceCollection,
             $data
         );
+        /*
+        parent::__construct(
+            $request,
+            $urlBuilder,
+            $payiqHelper,
+            $storeManager,
+            $resolver,
+            $context,
+            $registry,
+            $extensionFactory,
+            $customAttributeFactory,
+            $paymentData,
+            $scopeConfig,
+            $logger,
+            $payiqLogger,
+            $resource,
+            $resourceCollection,
+            $data
+        );
+        */
+
+
+        // Init PayIQ Environment
+        $serviceName = $this->getConfigData('service_name');
+        $sharedSeret = $this->getConfigData('shared_secret');
+        $debug = (bool)$this->getConfigData('debug');
 
         $this->urlBuilder = $urlBuilder;
         $this->payiqHelper = $payiqHelper;
@@ -97,11 +164,7 @@ abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMeth
         $this->logger = $logger;
         $this->request = $request;
 
-        // Init PayIQ Environment
-        $accountnumber = $this->getConfigData('accountnumber');
-        $encryptionkey = $this->getConfigData('encryptionkey');
-        $debug = (bool)$this->getConfigData('debug');
-        $this->payiqHelper->getPx()->setEnvironment($accountnumber, $encryptionkey, $debug);
+        $this->payiqHelper->getClient()->setEnvironment($serviceName, $sharedSeret, $debug);
     }
 
     /**
@@ -118,6 +181,59 @@ abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMeth
     {
         // Implement postRequest() method.
     }
+
+    /**
+     * Method that will be executed instead of authorize or capture
+     * if flag isInitializeNeeded set to true
+     *
+     * @param string $paymentAction
+     * @param object $stateObject
+     *
+     * @return $this
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @api
+     */
+    public function initialize($paymentAction, $stateObject)
+    {
+        /** @var \Magento\Sales\Model\Order\Payment $payment */
+        $payment = $this->getInfoInstance();
+
+        /** @var \Magento\Sales\Model\Order $order */
+        $order = $payment->getOrder();
+        $order->setCanSendNewEmailFlag(false);
+
+        // Set Initial Order Status
+        $state = \Magento\Sales\Model\Order::STATE_NEW;
+        $stateObject->setState($state);
+        $stateObject->setStatus($state);
+        $stateObject->setIsNotified(false);
+    }
+
+    /**
+     * Get config payment action url
+     * Used to universalize payment actions when processing payment place
+     *
+     * @return string
+     * @api
+     */
+    public function getConfigPaymentAction()
+    {
+        $paymentAction = $this->getConfigData('payment_action');
+        return empty($paymentAction) ? true : $paymentAction;
+    }
+
+    /**
+     * Checkout redirect URL getter for onepage checkout (hardcode)
+     *
+     * @see \Magento\Checkout\Controller\Onepage::savePaymentAction()
+     * @see \Magento\Quote\Model\Quote\Payment::getCheckoutRedirectUrl()
+     * @return string
+     */
+    public function getCheckoutRedirectUrl()
+    {
+        return $this->urlBuilder->getUrl('payiq/payiq/redirect', ['_secure' => $this->request->isSecure()]);
+    }
+
 
     /**
      * Fetch transaction info

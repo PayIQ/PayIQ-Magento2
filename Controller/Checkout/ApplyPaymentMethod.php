@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Controller\Checkout;
+namespace PayIQ\Magento2\Controller\Checkout;
 
 class ApplyPaymentMethod extends \Magento\Framework\App\Action\Action
 {

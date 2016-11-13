@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model\Sales\Total\Creditmemo;
+namespace PayIQ\Magento2\Model\Sales\Total\Creditmemo;
 
 use Magento\Sales\Model\Order\Creditmemo;
 use Magento\Sales\Model\Order\Creditmemo\Total\AbstractTotal;

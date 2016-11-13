@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Helper;
+namespace PayIQ\Magento2\Helper;
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -56,8 +56,8 @@ class PayIQHelper extends AbstractPayIQHelper
             $resolver = $om->get('Magento\Framework\Locale\Resolver');
             $locale = $resolver->getLocale();
 
-            /** @var \PayIQ\Payments\Model\Config\Source\Language $language */
-            $language = $om->get('PayIQ\Payments\Model\Config\Source\Language');
+            /** @var \PayIQ\Magento2\Model\Config\Source\Language $language */
+            $language = $om->get('PayIQ\Magento2\Model\Config\Source\Language');
             $languages = $language->toOptionArray();
             foreach ($languages as $key => $value) {
                 if (str_replace('_', '-', $locale) === $value['value']) {
@@ -178,7 +178,7 @@ class PayIQHelper extends AbstractPayIQHelper
             ]),
             //Allowed values: Card, Direct, NotSet
             'PaymentMethod'     => 'NotSet',
-            'SupayiqessUrl'        => $this->currentStore->getUrl('payiq/payiq/supayiqess', [
+            'SuccessUrl'        => $this->currentStore->getUrl('payiq/payiq/success', [
                 //'_secure' => $this->getRequest()->isSecure()
             ]),
         ];

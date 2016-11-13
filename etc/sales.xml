@@ -2,19 +2,19 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
     <section name="quote">
         <group name="totals">
-            <item name="payiq_payment_fee" instance="PayIQ\Payments\Model\Quote\Address\Total\Fee" sort_order="690"/>
+            <item name="payiq_payment_fee" instance="PayIQ\Magento2\Model\Quote\Address\Total\Fee" sort_order="690"/>
         </group>
     </section>
 
     <section name="order_invoice">
         <group name="totals">
-            <item name="payiq_payment_fee" instance="PayIQ\Payments\Model\Sales\Total\Invoice\Fee" sort_order="690"/>
+            <item name="payiq_payment_fee" instance="PayIQ\Magento2\Model\Sales\Total\Invoice\Fee" sort_order="690"/>
         </group>
     </section>
 
     <section name="order_creditmemo">
         <group name="totals">
-            <item name="payiq_payment_fee" instance="PayIQ\Payments\Model\Sales\Total\Creditmemo\Fee" sort_order="690"/>
+            <item name="payiq_payment_fee" instance="PayIQ\Magento2\Model\Sales\Total\Creditmemo\Fee" sort_order="690"/>
         </group>
     </section>
 </config>

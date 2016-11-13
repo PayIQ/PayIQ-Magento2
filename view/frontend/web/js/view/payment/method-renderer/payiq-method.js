@@ -5,7 +5,7 @@ define(
         'ko',
         'jquery',
         'Magento_Checkout/js/view/payment/default',
-        'PayIQ/js/action/set-payment-method',
+        'PayIQ_Magento2/js/action/set-payment-method',
         'Magento_Checkout/js/action/select-payment-method',
         'Magento_Checkout/js/model/quote',
         'Magento_Checkout/js/checkout-data'
@@ -16,7 +16,7 @@ define(
         return Component.extend({
             defaults: {
                 self: this,
-                template: 'PayIQ/payment/payiq'
+                template: 'PayIQ_Magento2/payment/payiq'
             },
             /** Redirect to PayIQ */
             continueToPayIQ: function () {

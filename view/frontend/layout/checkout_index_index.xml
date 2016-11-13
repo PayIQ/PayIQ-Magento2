@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="PayIQ::css/styles.css"/>
+        <css src="PayIQ_Magento2::css/styles.css"/>
     </head>
     <body>
         <!-- Payment Methods -->
@@ -22,7 +22,7 @@
                                                             <!-- merge payment method renders here -->
                                                             <item name="children" xsi:type="array">
                                                                 <item name="payiq-payments" xsi:type="array">
-                                                                    <item name="component" xsi:type="string">PayIQ/js/view/payment/payiq-methods</item>
+                                                                    <item name="component" xsi:type="string">PayIQ_Magento2/js/view/payment/payiq-methods</item>
                                                                     <item name="methods" xsi:type="array">
 																		 <item name="payiq" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
@@ -58,10 +58,10 @@
                                                 <item name="totals" xsi:type="array">
                                                     <item name="children" xsi:type="array">
                                                        <item name="payiq_payment_fee" xsi:type="array">
-                                                            <item name="component" xsi:type="string">PayIQ/js/view/checkout/cart/totals/fee</item>
+                                                            <item name="component" xsi:type="string">PayIQ_Magento2/js/view/checkout/cart/totals/fee</item>
                                                             <item name="sortOrder" xsi:type="string">20</item>
                                                             <item name="config" xsi:type="array">
-                                                                <item name="template" xsi:type="string">PayIQ/checkout/summary/fee</item>
+                                                                <item name="template" xsi:type="string">PayIQ_Magento2/checkout/summary/fee</item>
                                                                 <item name="title" xsi:type="string" translate="true">Payment Fee</item>
                                                                 <item name="excludingTaxMessage" xsi:type="string" translate="true">Excl. Tax</item>
                                                                 <item name="includingTaxMessage" xsi:type="string" translate="true">Incl. Tax</item>
@@ -97,7 +97,7 @@
                                                             <item name="component" xsi:type="string">uiComponent</item>
                                                             <item name="children" xsi:type="array">
                                                                 <item name="payiq-social-security-number-address" xsi:type="array">
-                                                                    <item name="component" xsi:type="string">PayIQ/js/view/address/social-security-number</item>
+                                                                    <item name="component" xsi:type="string">PayIQ_Magento2/js/view/address/social-security-number</item>
                                                                     <item name="tooltip" xsi:type="array">
                                                                         <item name="description" xsi:type="string" translate="true">You can fill fields using your Social Security Number.</item>
                                                                     </item>

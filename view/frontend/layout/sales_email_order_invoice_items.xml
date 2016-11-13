@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="invoice_totals">
-            <block name="payiq_payment_fee_invoice" class="PayIQ\Payments\Block\Sales\Invoice\Fee" />
+            <block name="payiq_payment_fee_invoice" class="PayIQ\Magento2\Block\Sales\Invoice\Fee" />
         </referenceContainer>
     </body>
 </page>

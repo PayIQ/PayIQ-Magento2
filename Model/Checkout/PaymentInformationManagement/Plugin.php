@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model\Checkout\PaymentInformationManagement;
+namespace PayIQ\Magento2\Model\Checkout\PaymentInformationManagement;
 
 class Plugin
 {
@@ -36,7 +36,7 @@ class Plugin
     )
     {
         /*
-        if ($paymentMethod->getMethod() === \PayIQ\Payments\Model\Method\Bankdebit::METHOD_CODE) {
+        if ($paymentMethod->getMethod() === \PayIQ\Magento2\Model\Method\Bankdebit::METHOD_CODE) {
             $additionalData = $paymentMethod->getAdditionalData();
             $this->session->setBankId(isset($additionalData['bank_id']) ? $additionalData['bank_id'] : null);
         }

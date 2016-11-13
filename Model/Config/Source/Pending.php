@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model\Config\Source;
+namespace PayIQ\Magento2\Model\Config\Source;
 
 class Pending extends \Magento\Sales\Model\Config\Source\Order\Status
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Logger;
+namespace PayIQ\Magento2\Logger;
 
 class Handler extends \Magento\Framework\Logger\Handler\Base
 {

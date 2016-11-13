@@ -1,10 +1,10 @@
 <?php
 
-namespace PayIQ\Payments\Block\Sales\Order;
+namespace PayIQ\Magento2\Block\Sales\Order;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use PayIQ\Payments\Model\Fee\Config;
+use PayIQ\Magento2\Model\Fee\Config;
 use Magento\Framework\DataObject;
 
 class Fee extends Template

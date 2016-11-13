@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Controller\Checkout;
+namespace PayIQ\Magento2\Controller\Checkout;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -32,12 +32,12 @@ class GetAddress extends \Magento\Framework\App\Action\Action
     protected $resultJsonFactory;
 
     /**
-     * @var \PayIQ\Payments\Helper\Data
+     * @var \PayIQ\Magento2\Helper\Data
      */
     protected $payiqHelper;
 
     /**
-     * @var \PayIQ\Payments\Logger\Logger
+     * @var \PayIQ\Magento2\Logger\Logger
      */
     protected $payiqLogger;
 
@@ -48,8 +48,8 @@ class GetAddress extends \Magento\Framework\App\Action\Action
      * @param StoreManagerInterface $storeManager
      * @param \Magento\Checkout\Model\Session $session
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-     * @param \PayIQ\Payments\Helper\Data $payiqHelper
-     * @param \PayIQ\Payments\Logger\Logger $payiqLogger
+     * @param \PayIQ\Magento2\Helper\Data $payiqHelper
+     * @param \PayIQ\Magento2\Logger\Logger $payiqLogger
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -57,8 +57,8 @@ class GetAddress extends \Magento\Framework\App\Action\Action
         StoreManagerInterface $storeManager,
         \Magento\Checkout\Model\Session $session,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        \PayIQ\Payments\Helper\Data $payiqHelper,
-        \PayIQ\Payments\Logger\Logger $payiqLogger
+        \PayIQ\Magento2\Helper\Data $payiqHelper,
+        \PayIQ\Magento2\Logger\Logger $payiqLogger
     )
     {
         parent::__construct($context);

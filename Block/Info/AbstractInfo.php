@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Block\Info;
+namespace PayIQ\Magento2\Block\Info;
 
 use Magento\Framework\View\Element\Template;
 
@@ -17,7 +17,7 @@ abstract class AbstractInfo extends \Magento\Payment\Block\Info
     protected $transactionFields = [];
 
     /**
-     * @var \PayIQ\Payments\Helper\Data
+     * @var \PayIQ\Magento2\Helper\Data
      */
     protected $payiqHelper;
 
@@ -33,7 +33,7 @@ abstract class AbstractInfo extends \Magento\Payment\Block\Info
      * @param array $data
      */
     public function __construct(
-        \PayIQ\Payments\Helper\Data $payiqHelper,
+        \PayIQ\Magento2\Helper\Data $payiqHelper,
         \Magento\Sales\Api\TransactionRepositoryInterface $transactionRepository,
         Template\Context $context,
         array $data = []

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PayIQ\Payments\Helper;
+namespace PayIQ\Magento2\Helper;
 
 
 use DOMDocument;

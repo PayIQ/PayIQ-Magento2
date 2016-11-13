@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Controller\PayIQ;
+namespace PayIQ\Magento2\Controller\PayIQ;
 
 class Cancel extends \Magento\Framework\App\Action\Action
 {
@@ -15,12 +15,12 @@ class Cancel extends \Magento\Framework\App\Action\Action
     protected $session;
 
     /**
-     * @var \PayIQ\Payments\Helper\Data
+     * @var \PayIQ\Magento2\Helper\Data
      */
     protected $payiqHelper;
 
     /**
-     * @var \PayIQ\Payments\Logger\Logger
+     * @var \PayIQ\Magento2\Logger\Logger
      */
     protected $payiqLogger;
 
@@ -28,14 +28,14 @@ class Cancel extends \Magento\Framework\App\Action\Action
      * Cancel constructor.
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Checkout\Model\Session $session
-     * @param \PayIQ\Payments\Helper\Data $payiqHelper
-     * @param \PayIQ\Payments\Logger\Logger $payiqLogger
+     * @param \PayIQ\Magento2\Helper\Data $payiqHelper
+     * @param \PayIQ\Magento2\Logger\Logger $payiqLogger
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Checkout\Model\Session $session,
-        \PayIQ\Payments\Helper\Data $payiqHelper,
-        \PayIQ\Payments\Logger\Logger $payiqLogger
+        \PayIQ\Magento2\Helper\Data $payiqHelper,
+        \PayIQ\Magento2\Logger\Logger $payiqLogger
     ) {
         parent::__construct($context);
 

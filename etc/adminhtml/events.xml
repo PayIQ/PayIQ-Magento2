@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='urn:magento:framework:Event/etc/events.xsd'>
     <event name='sales_order_invoice_save_after'>
-        <observer name="payiq_payments_observer_invoice" instance="PayIQ\Payments\Observer\SalesOrderInvoiceSaveAfter" />
+        <observer name="payiq_payments_observer_invoice" instance="PayIQ\Magento2\Observer\SalesOrderInvoiceSaveAfter" />
     </event>
 </config>

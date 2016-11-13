@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Controller\PayIQ;
+namespace PayIQ\Magento2\Controller\PayIQ;
 
 use Magento\Sales\Model\Order\Payment\Transaction;
 
@@ -17,12 +17,12 @@ class Callback extends \Magento\Framework\App\Action\Action
     protected $session;
 
     /**
-     * @var \PayIQ\Payments\Helper\Data
+     * @var \PayIQ\Magento2\Helper\Data
      */
     protected $payiqHelper;
 
     /**
-     * @var \PayIQ\Payments\Logger\Logger
+     * @var \PayIQ\Magento2\Logger\Logger
      */
     protected $payiqLogger;
 
@@ -40,15 +40,15 @@ class Callback extends \Magento\Framework\App\Action\Action
      * Success constructor.
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Checkout\Model\Session $session
-     * @param \PayIQ\Payments\Helper\Data $payiqHelper
-     * @param \PayIQ\Payments\Logger\Logger $payiqLogger
+     * @param \PayIQ\Magento2\Helper\Data $payiqHelper
+     * @param \PayIQ\Magento2\Logger\Logger $payiqLogger
      * @param \Magento\Sales\Api\TransactionRepositoryInterface $transactionRepository
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Checkout\Model\Session $session,
-        \PayIQ\Payments\Helper\Data $payiqHelper,
-        \PayIQ\Payments\Logger\Logger $payiqLogger,
+        \PayIQ\Magento2\Helper\Data $payiqHelper,
+        \PayIQ\Magento2\Logger\Logger $payiqLogger,
         \Magento\Sales\Api\TransactionRepositoryInterface $transactionRepository,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender
     )
@@ -80,6 +80,7 @@ class Callback extends \Magento\Framework\App\Action\Action
     {
         $params = $this->getRequest()->getParams();
 
+        //print_r($params);
         /*
         Example input data:
 
@@ -169,7 +170,7 @@ class Callback extends \Magento\Framework\App\Action\Action
         $transactionDetails = $client->GetTransactionDetails($transactionID);
 
 
-        print_r($transactionDetails);
+        //print_r($transactionDetails);
 
         switch ($params['operationtype'])
         {
@@ -184,15 +185,17 @@ class Callback extends \Magento\Framework\App\Action\Action
                 /** @var \Magento\Sales\Model\Order\Status $status */
                 $status = $this->payiqHelper->getAssignedState($new_status);
 
+                /*
                 var_dump($status)->getState();
                 var_dump($status)->getStatus();
                 die();
+                */
                 $order->setData('state', $status->getState());
                 $order->setStatus($status->getStatus());
-                $order->save();
 
                 // @todo Fixme: No comment
                 $order->addStatusHistoryComment($message);
+                $order->save();
 
                 // Send order notification
                 try {
@@ -206,7 +209,7 @@ class Callback extends \Magento\Framework\App\Action\Action
                 die('OK');
 
                 break;
-            case 'Capture':
+            case 'capture':
 
                 // Payment captured
                 $message = __('Payment has been captured');
@@ -218,8 +221,8 @@ class Callback extends \Magento\Framework\App\Action\Action
                 $status = $this->payiqHelper->getAssignedState($new_status);
                 $order->setData('state', $status->getState());
                 $order->setStatus($status->getStatus());
-                $order->save();
                 $order->addStatusHistoryComment($message);
+                $order->save();
 
                 // Send order notification
                 try {
@@ -235,7 +238,10 @@ class Callback extends \Magento\Framework\App\Action\Action
 
                 // Redirect to Success page
                 $this->session->getQuote()->setIsActive(false)->save();
-                $this->_redirect('checkout/onepage/success');
+                //$this->_redirect('checkout/onepage/success');
+
+                die('OK');
+
                 break;
 
                 break;
@@ -245,7 +251,7 @@ class Callback extends \Magento\Framework\App\Action\Action
 
 
             default:
-                return $this->invalidCallback('Invalid opration');
+                return $this->invalidCallback('Invalid opration: '.$params['operationtype']);
                 break;
         }
 

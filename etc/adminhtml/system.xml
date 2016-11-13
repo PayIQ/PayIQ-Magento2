@@ -40,7 +40,7 @@
 
                 <field id="lang" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Language:</label>
-                    <source_model>PayIQ\Payments\Model\Config\Source\Language</source_model>
+                    <source_model>PayIQ\Magento2\Model\Config\Source\Language</source_model>
                     <config_path>payment/payiq/lang</config_path>
                 </field>
 
@@ -53,14 +53,14 @@
 
                 <field id="order_status_pending" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Order Status Pending Payment:</label>
-                    <source_model>PayIQ\Payments\Model\Config\Source\Pending</source_model>
+                    <source_model>PayIQ\Magento2\Model\Config\Source\Pending</source_model>
                     <config_path>payment/payiq/order_status_pending</config_path>
                     <comment>Order satus before is redirected to PayIQ</comment>
                 </field>
 
                 <field id="order_status_cancel" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Order Status Cancelled:</label>
-                    <source_model>PayIQ\Payments\Model\Config\Source\Cancel</source_model>
+                    <source_model>PayIQ\Magento2\Model\Config\Source\Cancel</source_model>
                     <config_path>payment/payiq/order_status_cancel</config_path>
                     <comment>Order satus was cancelled by customer</comment>
                 </field>

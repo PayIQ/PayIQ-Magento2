@@ -11,7 +11,7 @@ define(
         rendererList.push(
             {
                 type: 'payiq',
-                component: 'PayIQ/js/view/payment/method-renderer/payiq-method'
+                component: 'PayIQ_Magento2/js/view/payment/method-renderer/payiq-method'
             }
         );
         /** Add view logic here if needed */

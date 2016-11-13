@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Setup;
+namespace PayIQ\Magento2\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;

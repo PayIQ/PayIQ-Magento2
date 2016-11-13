@@ -3,7 +3,7 @@
 define([
     'ko',
     'uiComponent',
-    'PayIQ/js/action/get-social-security-number'
+    'PayIQ_Magento2/js/action/get-social-security-number'
 ], function (ko, Component, getSocialSecurityNumberAction) {
     'use strict';
     var isEnabled = window.checkoutConfig.payiqSSN.isEnabled;
@@ -11,7 +11,7 @@ define([
 
     return Component.extend({
         defaults: {
-            template: 'PayIQ/address/social-security-number'
+            template: 'PayIQ_Magento2/address/social-security-number'
         },
         initialize: function () {
             this._super();

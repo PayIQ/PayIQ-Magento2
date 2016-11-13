@@ -12,7 +12,7 @@
                 <attribute type="expanded">1</attribute>
                 <fieldset_css>complex</fieldset_css>
                 <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Group</frontend_model>
-                <include path="PayIQ::system/payiq.xml"/>
+                <include path="PayIQ_Magento2::system/payiq.xml"/>
             </group>
         </section>
 

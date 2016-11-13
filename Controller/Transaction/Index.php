@@ -1,5 +1,5 @@
 <?php
-namespace PayIQ\Payments\Controller\Transaction;
+namespace PayIQ\Magento2\Controller\Transaction;
 
 use Zend\Log\Logger;
 use Zend\Log\Writer\Stream;
@@ -8,7 +8,7 @@ use Zend\Log\Writer\Stream;
  * Class Index
  * Provide TC URL http://testsite.local/payiq/transaction
  * @see http://www.payiqpim.com/quick-guide/9-transaction-callback/
- * @package PayIQ\Payments\Controller\Transaction
+ * @package PayIQ\Magento2\Controller\Transaction
  */
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -19,7 +19,7 @@ class Index extends \Magento\Framework\App\Action\Action
     ];
 
     /**
-     * @var \PayIQ\Payments\Helper\Data
+     * @var \PayIQ\Magento2\Helper\Data
      */
     protected $payiqHelper;
 
@@ -32,12 +32,12 @@ class Index extends \Magento\Framework\App\Action\Action
      * Constructor
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\Controller\Result\RawFactory $rawResultFactory
-     * @param \PayIQ\Payments\Helper\Data $payiqHelper
+     * @param \PayIQ\Magento2\Helper\Data $payiqHelper
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Controller\Result\RawFactory $rawResultFactory,
-        \PayIQ\Payments\Helper\Data $payiqHelper
+        \PayIQ\Magento2\Helper\Data $payiqHelper
     )
     {
         parent::__construct($context);

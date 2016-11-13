@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model\Sales\Total\Invoice;
+namespace PayIQ\Magento2\Model\Sales\Total\Invoice;
 
 use Magento\Sales\Model\Order\Invoice;
 use Magento\Sales\Model\Order\Invoice\Total\AbstractTotal;

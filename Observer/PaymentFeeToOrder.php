@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Observer;
+namespace PayIQ\Magento2\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 

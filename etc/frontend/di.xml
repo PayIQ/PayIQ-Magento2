@@ -3,21 +3,21 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="payiq_config_provider" xsi:type="object">PayIQ\Payments\Model\PayIQConfigProvider</item>
+                <item name="payiq_config_provider" xsi:type="object">PayIQ\Magento2\Model\PayIQConfigProvider</item>
             </argument>
         </arguments>
     </type>
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="payiq_fee_config_provider" xsi:type="object">PayIQ\Payments\Model\FeeConfigProvider</item>
+                <item name="payiq_fee_config_provider" xsi:type="object">PayIQ\Magento2\Model\FeeConfigProvider</item>
             </argument>
         </arguments>
     </type>
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="payiq_ssn_config_provider" xsi:type="object">PayIQ\Payments\Model\SsnConfigProvider</item>
+                <item name="payiq_ssn_config_provider" xsi:type="object">PayIQ\Magento2\Model\SsnConfigProvider</item>
             </argument>
         </arguments>
     </type>

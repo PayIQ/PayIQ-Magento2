@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model\Quote\Address\Total;
+namespace PayIQ\Magento2\Model\Quote\Address\Total;
 
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Address\Total\AbstractTotal;
@@ -38,7 +38,7 @@ class Fee extends AbstractTotal
     protected $checkoutHelper;
 
     /**
-     * @var \PayIQ\Payments\Helper\Data
+     * @var \PayIQ\Magento2\Helper\Data
      */
     protected $payiqHelper;
 
@@ -57,7 +57,7 @@ class Fee extends AbstractTotal
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param PriceCurrencyInterface $priceCurrency
      * @param \Magento\Checkout\Helper\Data $checkoutHelper
-     * @param \PayIQ\Payments\Helper\Data $payiqHelper ,
+     * @param \PayIQ\Magento2\Helper\Data $payiqHelper ,
      * @param ScopeConfigInterface $scopeConfig
      * @param Calculation $calculationTool
      */
@@ -65,7 +65,7 @@ class Fee extends AbstractTotal
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         PriceCurrencyInterface $priceCurrency,
         \Magento\Checkout\Helper\Data $checkoutHelper,
-        \PayIQ\Payments\Helper\Data $payiqHelper,
+        \PayIQ\Magento2\Helper\Data $payiqHelper,
         ScopeConfigInterface $scopeConfig,
         Calculation $calculationTool
     )

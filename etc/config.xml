@@ -4,7 +4,7 @@
         <payment>
             <payiq>
                 <active>1</active>
-                <model>PayIQ\Payments\Model\Method\PayIQ</model>
+                <model>PayIQ\Magento2\Model\Method\PayIQ</model>
                 <title>PayIQ</title>
                 <debug>1</debug>
                 <accountnumber>payiq account number</accountnumber>
@@ -20,23 +20,5 @@
                 <group>payiq</group>
             </payiq>
         </payment>
-
-        <tax>
-            <cart_display>
-                <payiq_fee>3</payiq_fee>
-            </cart_display>
-            <sales_display>
-                <payiq_fee>3</payiq_fee>
-            </sales_display>
-        </tax>
-
-        <payiq>
-            <ssn>
-                <enable>0</enable>
-                <debug>1</debug>
-                <accountnumber>payiq account number</accountnumber>
-                <encryptionkey>payiq encryption key</encryptionkey>
-            </ssn>
-        </payiq>
     </default>
 </config>

@@ -4,7 +4,7 @@
         <label><![CDATA[PayIQ Payments]]></label>
         <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
         <fieldset_css>payiq-method-payiq-cc</fieldset_css>
-        <comment><![CDATA[This payment module provide <a href="http://payiq.com/" target="_blank">PayIQ Payments</a>. You can set <a href="/payiq/transaction" target="_blank">this URL</a> as a Transaction Callback URL.]]></comment>
+        <comment><![CDATA[This payment module provide <a href="http://payiq.com/" target="_blank">PayIQ_Magento2 Payments</a>. You can set <a href="/payiq/transaction" target="_blank">this URL</a> as a Transaction Callback URL.]]></comment>
         <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Enabled</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -38,13 +38,13 @@
 
         <field id="transactiontype" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Transaction Type</label>
-            <source_model>PayIQ\Payments\Model\Config\Source\Operation</source_model>
+            <source_model>PayIQ\Magento2\Model\Config\Source\Operation</source_model>
             <config_path>payment/payiq/transactiontype</config_path>
         </field>
 
         <field id="payment_type" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Payment Type</label>
-            <source_model>PayIQ\Payments\Model\Config\Source\Type</source_model>
+            <source_model>PayIQ\Magento2\Model\Config\Source\Type</source_model>
             <config_path>payment/payiq/payment_type</config_path>
         </field>
 
@@ -74,7 +74,7 @@
 
         <field id="language" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Client language</label>
-            <source_model>PayIQ\Payments\Model\Config\Source\Language</source_model>
+            <source_model>PayIQ\Magento2\Model\Config\Source\Language</source_model>
             <config_path>payment/payiq/language</config_path>
         </field>
 

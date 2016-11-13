@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model\Fee;
+namespace PayIQ\Magento2\Model\Fee;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 

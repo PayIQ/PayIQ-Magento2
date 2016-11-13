@@ -1,6 +1,6 @@
 <?php
 
-namespace PayIQ\Payments\Model;
+namespace PayIQ\Magento2\Model;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Tax\Helper\Data as TaxHelper;

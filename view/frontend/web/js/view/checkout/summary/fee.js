@@ -14,7 +14,7 @@ define(
         return Component.extend({
             defaults: {
                 displayMode: displayMode,
-                template: 'PayIQ/checkout/summary/fee'
+                template: 'PayIQ_Magento2/checkout/summary/fee'
             },
             totals: quote.getTotals(),
             isDisplayed: function () {

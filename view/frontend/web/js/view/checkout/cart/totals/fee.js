@@ -2,14 +2,14 @@
 /*global alert*/
 define(
     [
-        'PayIQ/js/view/checkout/summary/fee'
+        'PayIQ_Magento2/js/view/checkout/summary/fee'
     ],
     function (Component) {
         'use strict';
 
         return Component.extend({
             defaults: {
-                template: 'PayIQ/checkout/cart/totals/fee'
+                template: 'PayIQ_Magento2/checkout/cart/totals/fee'
             },
             /**
              * @override
