@@ -17,7 +17,7 @@ The official PayIQ Extension for Magento2
 3. Enter following commands to enable module:
 
     ```bash
-    php bin/magento module:enable PayIQ --clear-static-content && php bin/magento setup:upgrade && php bin/magento cache:clean
+    php bin/magento module:enable PayIQ_Magento2 --clear-static-content && php bin/magento setup:upgrade && php bin/magento cache:clean
     ```
     This will enable the module, run the required install scripts and clear the cache.
 
