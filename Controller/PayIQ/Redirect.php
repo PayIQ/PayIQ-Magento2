@@ -43,7 +43,6 @@ class Redirect extends \Magento\Framework\App\Action\Action
         $this->session = $session;
         $this->payiqHelper = $payiqHelper;
         $this->payiqLogger = $payiqLogger;
-
     }
 
     /**

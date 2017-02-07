@@ -17,7 +17,6 @@
                 <checkoutinfo>1</checkoutinfo>
                 <language>en-US</language>
                 <allowspecific>0</allowspecific>
-                <group>payiq</group>
             </payiq>
         </payment>
     </default>
