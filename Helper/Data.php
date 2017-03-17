@@ -51,8 +51,8 @@ class Data extends AbstractHelper
         //$this->_orderConfig = $orderConfig;
 
         $this->orderStatusCollectionFactory = $orderStatusCollectionFactory;
-        //$this->invoiceService = $invoiceService;
-        //$this->invoiceSender = $invoiceSender;
+        $this->invoiceService = $invoiceService;
+        $this->invoiceSender = $invoiceSender;
 
         //$this->taxHelper = $taxHelper;
         //$this->productMetadata = $productMetadata;
@@ -196,6 +196,67 @@ class Data extends AbstractHelper
         }
 
         return $transaction;
+    }
+
+
+    /**
+     * Create Invoice
+     * @param \Magento\Sales\Model\Order $order
+     * @param array $qtys
+     * @param bool $online
+     * @param string $comment
+     * @return \Magento\Sales\Model\Order\Invoice
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function makeInvoice(\Magento\Sales\Model\Order $order, array $qtys = [], $online = false, $comment = '')
+    {
+        /** @var \Magento\Framework\ObjectManagerInterface $om */
+        $om = \Magento\Framework\App\ObjectManager::getInstance();
+
+        /** @var \Magento\Sales\Model\Order\Invoice $invoice */
+        $invoice = $this->invoiceService->prepareInvoice($order, $qtys);
+        $invoice->setRequestedCaptureCase($online ? \Magento\Sales\Model\Order\Invoice::CAPTURE_ONLINE : \Magento\Sales\Model\Order\Invoice::CAPTURE_OFFLINE);
+
+        // Add Comment
+        if (!empty($comment)) {
+            $invoice->addComment(
+                $comment,
+                true,
+                true
+            );
+
+            $invoice->setCustomerNote($comment);
+            $invoice->setCustomerNoteNotify(true);
+        }
+
+        $invoice->register();
+        $invoice->getOrder()->setIsInProcess(true);
+
+        /** @var \Magento\Framework\DB\Transaction $transactionSave */
+        $transactionSave = $om->create(
+            'Magento\Framework\DB\Transaction'
+        )
+            ->addObject($invoice)
+            ->addObject($invoice->getOrder());
+        $transactionSave->save();
+
+        // send invoice emails
+        try {
+            $this->invoiceSender->send($invoice);
+        } catch (\Exception $e) {
+            $om->get('Psr\Log\LoggerInterface')->critical($e);
+        }
+
+        $invoice->setIsPaid(true);
+
+        // Assign Last Transaction Id with Invoice
+        $transactionId = $invoice->getOrder()->getPayment()->getLastTransId();
+        if ($transactionId) {
+            $invoice->setTransactionId($transactionId);
+            $invoice->save();
+        }
+
+        return $invoice;
     }
 
 
