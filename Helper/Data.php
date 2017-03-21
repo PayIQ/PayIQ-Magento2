@@ -56,11 +56,6 @@ class Data extends AbstractHelper
 
         //$this->taxHelper = $taxHelper;
         //$this->productMetadata = $productMetadata;
-
-
-
-
-
     }
 
     public function getStoreId()
@@ -102,17 +97,19 @@ class Data extends AbstractHelper
         }
 
         if( $method ) {
-            $serviceName = $this->getConfigData('service_name', self::MODULE_NAME);
-            $sharedSecret = $this->getConfigData('shared_secret', self::MODULE_NAME);
-            $debug = (bool)$this->getConfigData('debug', self::MODULE_NAME);
 
-            /*
-            var_dump($serviceName);
-            var_dump($sharedSecret);
-            var_dump($debug);
-            */
+            $debugMode = (bool) $this->getConfigData('debug', self::MODULE_NAME);
+            $testMode = (bool) $this->getConfigData('test_mode', self::MODULE_NAME);
 
-            $this->PayIQHelper->setEnvironment($serviceName, $sharedSecret, $debug);
+            if( $testMode ) {
+                $serviceName = $this->getConfigData('service_name_test', self::MODULE_NAME);
+                $sharedSecret = $this->getConfigData('shared_secret_test', self::MODULE_NAME);
+            } else {
+                $serviceName = $this->getConfigData('service_name', self::MODULE_NAME);
+                $sharedSecret = $this->getConfigData('shared_secret', self::MODULE_NAME);
+            }
+
+            $this->PayIQHelper->setEnvironment($serviceName, $sharedSecret, $testMode, $debugMode);
         }
 
         return $this->PayIQHelper;

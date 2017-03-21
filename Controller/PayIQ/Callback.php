@@ -157,7 +157,6 @@ class Callback extends \Magento\Framework\App\Action\Action
             return $this->invalidCallback('Invalid checksum');
         }
 
-
         // Check Transaction is already registered
         $transaction = $this->transactionRepository->getByTransactionId(
             $transactionID,
@@ -165,12 +164,8 @@ class Callback extends \Magento\Framework\App\Action\Action
             $order->getId()
         );
 
-
         // Get transaction details from PayIQ API
         $transactionDetails = $client->GetTransactionDetails($transactionID);
-
-
-        //print_r($transactionDetails);
 
         switch ($params['operationtype'])
         {
@@ -185,15 +180,9 @@ class Callback extends \Magento\Framework\App\Action\Action
                 /** @var \Magento\Sales\Model\Order\Status $status */
                 $status = $this->payiqHelper->getAssignedState($new_status);
 
-                /*
-                var_dump($status)->getState();
-                var_dump($status)->getStatus();
-                die();
-                */
                 $order->setData('state', $status->getState());
                 $order->setStatus($status->getStatus());
 
-                // @todo Fixme: No comment
                 $order->addStatusHistoryComment($message);
                 $order->save();
 
@@ -238,7 +227,6 @@ class Callback extends \Magento\Framework\App\Action\Action
 
                 // Redirect to Success page
                 $this->session->getQuote()->setIsActive(false)->save();
-                //$this->_redirect('checkout/onepage/success');
 
                 die('OK');
 

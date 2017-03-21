@@ -56,13 +56,6 @@ class Redirect extends \Magento\Framework\App\Action\Action
         // Load Order
         $order = $this->getOrder();
 
-
-        /*
-        var_dump($order->getId());
-        var_dump($order);
-        */
-
-
         if (!$order->getId()) {
             $this->session->restoreQuote();
             $this->messageManager->addError(__('No order for processing found'));
@@ -70,7 +63,6 @@ class Redirect extends \Magento\Framework\App\Action\Action
             $this->_redirect('checkout/cart');
             return;
         }
-
 
         $order_id = $order->getIncrementId();
 
@@ -138,18 +130,6 @@ class Redirect extends \Magento\Framework\App\Action\Action
     protected function getOrder()
     {
         $incrementId = $this->getCheckout()->getLastRealOrderId();
-
-        /*
-        var_dump($incrementId);
-        //var_dump($this->_checkoutSession->getLastRealOrderId());
-
-        var_dump($this->getCheckout()->getLastRealOrder()->getId());
-        var_dump($this->getCheckout()->getLastRealOrder());
-
-        //var_dump(Mage::getSingleton('checkout/session')->getLastRealOrderId());
-
-        */
-
 
         $orderFactory = $this->_objectManager->get('Magento\Sales\Model\OrderFactory');
         return $orderFactory->create()->loadByIncrementId($incrementId);

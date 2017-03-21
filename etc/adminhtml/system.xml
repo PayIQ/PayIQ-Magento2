@@ -8,7 +8,7 @@
                 <attribute type="expanded">1</attribute>
 
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Enabled</label>
+                    <label>Enabled:</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>payment/payiq/active</config_path>
                 </field>
@@ -26,9 +26,21 @@
                 </field>
 
                 <field id="shared_secret" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Shared secret</label>
+                    <label>Shared secret:</label>
                     <comment>Unique key for your integration. You get this from PayIQ.</comment>
                     <config_path>payment/payiq/shared_secret</config_path>
+                </field>
+
+                <field id="service_name_test" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Service name test:</label>
+                    <comment>Unique id of your test integration. You get this from PayIQ.</comment>
+                    <config_path>payment/payiq/service_name_test</config_path>
+                </field>
+
+                <field id="shared_secret_test" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Shared secret test:</label>
+                    <comment>Unique key for your test integration. You get this from PayIQ.</comment>
+                    <config_path>payment/payiq/shared_secret_test</config_path>
                 </field>
 
                 <field id="capturenow" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">

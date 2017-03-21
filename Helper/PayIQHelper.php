@@ -45,7 +45,7 @@ class PayIQHelper extends AbstractPayIQHelper
         $this->payment = $payment;
     }
 
-    public function getLanguage(  )
+    public function getLanguage( )
     {
         $language = $this->paymentMethod->getConfigData('language');
         if (empty($language)) {

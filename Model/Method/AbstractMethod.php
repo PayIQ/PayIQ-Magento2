@@ -98,10 +98,7 @@ abstract class AbstractMethod extends \Magento\Payment\Model\Method\AbstractMeth
         $this->request = $request;
 
         // Init PayIQ Environment
-        $accountnumber = $this->getConfigData('accountnumber');
-        $encryptionkey = $this->getConfigData('encryptionkey');
-        $debug = (bool)$this->getConfigData('debug');
-        $this->payiqHelper->getPx()->setEnvironment($accountnumber, $encryptionkey, $debug);
+        $this->payiqHelper->getClient();
     }
 
     /**

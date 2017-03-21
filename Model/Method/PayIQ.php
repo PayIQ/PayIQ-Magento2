@@ -151,12 +151,6 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
         );
         */
 
-
-        // Init PayIQ Environment
-        $serviceName = $this->getConfigData('service_name');
-        $sharedSeret = $this->getConfigData('shared_secret');
-        $debug = (bool)$this->getConfigData('debug');
-
         $this->urlBuilder = $urlBuilder;
         $this->payiqHelper = $payiqHelper;
         $this->storeManager = $storeManager;
@@ -164,7 +158,7 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
         $this->logger = $logger;
         $this->request = $request;
 
-        $this->payiqHelper->getClient()->setEnvironment($serviceName, $sharedSeret, $debug);
+        $this->payiqHelper->getClient();
     }
 
     /**
@@ -308,8 +302,16 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
             $order_id = $payment->getOrder()->getIncrementId();
         }
 
-        // Call PxOrder.Capture5
-        $params = [
+        /*
+        $data = [
+            'Checksum'          => $this->getChecksum( 'CaptureTransaction' ),
+            'ClientIpAddress'   => self::getClientIP(),
+            'ServiceName'       => $this->serviceName,
+            'TransactionId'     => $TransactionId,
+            'Timestamp' 		=> $this->getTimestamp(),
+        ];
+         */
+        $data = [
             'accountNumber' => '',
             'transactionNumber' => $transactionNumber,
             'amount' => round(100 * $amount),
@@ -317,7 +319,7 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
             'vatAmount' => 0,
             'additionalValues' => ''
         ];
-        $result = $this->payiqHelper->getPx()->Capture5($params);
+        $result = $this->payiqHelper->getClient()->CaptureTransaction( $data );
         if ($result['code'] === 'OK' && $result['errorCode'] === 'OK' && $result['description'] === 'OK') {
             // Note: Order Status will be changed in Observer
 
@@ -349,6 +351,8 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
         if (!$transaction) {
             throw new LocalizedException(__('Can\'t load last transaction.'));
         }
+        throw new \Exception('Not implemented');
+        return;
 
         // Load transaction Data
         $transactionId = $transaction->getTxnId();
@@ -371,7 +375,7 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
             'accountNumber' => '',
             'transactionNumber' => $details['transactionNumber']
         ];
-        $result = $this->payiqHelper->getPx()->Cancel2($params);
+        $result = $this->payiqHelper->getClient()->Cancel($params);
         if ($result['code'] === 'OK' && $result['errorCode'] === 'OK' && $result['description'] === 'OK') {
             // Add Cancel Transaction
             $payment->setStatus(self::STATUS_DECLINED)
@@ -408,6 +412,9 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
             throw new LocalizedException(__('Invalid transaction ID.'));
         }
 
+        throw new UnsupportedFunctionException();
+        return;
+
         // Load transaction Data
         $transactionId = $payment->getLastTransId();
         $transactionRepository = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Sales\Model\Order\Payment\Transaction\Repository');
@@ -437,16 +444,15 @@ class PayIQ extends \Magento\Payment\Model\Method\AbstractMethod implements Gate
             throw new LocalizedException(__('This payment has not yet captured.'));
         }
 
-        // Call PxOrder.Credit5
         $params = [
-            'accountNumber' => '',
+            'accountNumber'     => '',
             'transactionNumber' => $details['transactionNumber'],
-            'amount' => round(100 * $amount),
-            'orderId' => $details['orderId'],
-            'vatAmount' => 0,
-            'additionalValues' => ''
+            'amount'            => round(100 * $amount),
+            'orderId'           => $details['orderId'],
+            'vatAmount'         => 0,
+            'additionalValues'  => ''
         ];
-        $result = $this->payiqHelper->getPx()->Credit5($params);
+        $result = $this->payiqHelper->getClient()->Refund($params);
         if ($result['code'] === 'OK' && $result['errorCode'] === 'OK' && $result['description'] === 'OK') {
             // Add Credit Transaction
             $payment->setAnetTransType(\Magento\Sales\Model\Order\Payment\Transaction::TYPE_REFUND);
